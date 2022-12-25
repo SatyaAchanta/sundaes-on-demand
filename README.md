@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+- \*\*W3 Accesibility role defintions
+  - https://www.w3.org/TR/wai-aria-1.0/roles
+- \*\*React Testing Library docs:
+  - https://testing-library.com/docs/react-testing-library/intro/
+- \*\*userEvents:
+  - Whenever we use `userEvents` in our test, we need to create session using `setup` method.
+  - example: `const user = userEvent.setup()`
+  - in userEvent 14.x, userEvent `always returns a promise`, which means when we use any method on `userEvent`, we need to `await` it and then make an assertion
+  - \*\*\*For example:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```
+import { userEvent } from "@testing-library/user-event";
+const user = userEvent.setup();
+await user.click();
+```
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **testing library API**
+  - [About Queries](https://testing-library.com/docs/queries/about/)
+  - [RTL cheatsheet](https://testing-library.com/docs/react-testing-library/cheatsheet/)
+  - [RTL Query priority](https://testing-library.com/docs/queries/about/#priority)
+- \*\*Mock Service Worker (msw):
+  - https://mswjs.io/
+  - intercept network calls and return dummy JSON responses for testing
+  - Setup:
+    - install msw `npm install msw`
+    - create handlers
+    - create test server
+      - Make sure test server listens during all tests
+      - reset after each test
+  - Anything we want to appear asynchronously on the page, we need to use `await` and `findBy`
+  - Example: in below line of code, images are relying on img path coming from server, so we have to use `findAllByRole`.
+  - `findAllByRole` returns promise, so we need to use `await-async`
+  -
