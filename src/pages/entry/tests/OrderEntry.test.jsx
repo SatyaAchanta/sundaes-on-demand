@@ -15,6 +15,13 @@ test("handles error for scoop and toppings", async () => {
 
   render(<OrderEntry />);
 
+  /**
+   * If we are asseting multiple things , then use waitFor
+   * to not assert before all the calls happened
+   *
+   * without waitfor, our assert statement gets executed after first call
+   * even though we have few more calls to be resolved.
+   */
   await waitFor(async () => {
     const alerts = await screen.findAllByRole("alert");
     expect(alerts).toHaveLength(2);
